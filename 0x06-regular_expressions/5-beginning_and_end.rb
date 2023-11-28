@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
-# Matches a string represented token
+# Matches beginning and end of a string with a character in between
 
-puts ARG[0].scan(/hbt*n/).join
+puts ARGV[0].scan(/^h.n$/).join
