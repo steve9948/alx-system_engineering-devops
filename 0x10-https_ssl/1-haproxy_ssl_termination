@@ -1,0 +1,34 @@
+# /etc/haproxy/haproxy.cfg
+
+defaults
+    log     global
+    mode    http
+    option  httplog
+    option  dontlognull
+    timeout connect 5000
+    timeout client  50000
+    timeout server  50000
+
+frontend front
+    bind *:80
+    bind *:443 ssl crt /etc/haproxy/www.nayohmee.tech.pem
+    default_backend back
+    http-request add-header X-Forwarded-Proto https if { ssl_fc }
+
+backend back
+    mode http
+    balance roundrobin
+    option http-server-close
+    option forwardfor
+    server s1 100.25.150.172:80 check
+    server s2 52.72.27.238:80 check
+
+frontend letsencrypt-front
+    bind *:80
+    acl letsencrypt-acl path_beg /.well-known/acme-challenge/
+    use_backend letsencrypt-backend if letsencrypt-acl
+    default_backend back
+
+backend letsencrypt-backend
+    server letsencrypt 127.0.0.1:54321
+
