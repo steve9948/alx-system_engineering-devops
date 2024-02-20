@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Module to retrieve and display TODO list progress for a given employee ID."""
+"""
+Module to retrieve and display TODO list progress for a given employee ID.
+"""
 import requests
 import sys
 
