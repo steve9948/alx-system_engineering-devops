@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """
-Queries the Reddit api and return the subscribers
+Queries the Reddit api and returns the subs
 """
+
 import requests
 
 headers = {"User-Agent": "MyCustomUserAgent/1.0"}
@@ -16,3 +17,4 @@ def number_of_subscribers(subreddit):
         return data["data"]["subscribers"]
     else:
         return 0
+
