@@ -9,7 +9,7 @@ server {
 
         index index.html index.htm index.nginx-debian.html;
 
-        server_name 18.209.224.156
+        server_name 18.209.224.156;
 
         location / {
                 try_files $uri $uri/ @404;
